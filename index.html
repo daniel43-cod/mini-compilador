@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analizador Léxico y Sintáctico</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>Analizador Léxico y Sintáctico</h1>
+    <p>Mini simulador de compilador para un lenguaje tipo JavaScript</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Ingreso de código</h2>
+      <textarea id="codigo" spellcheck="false">let x = 10;
+let y = 5;
+if (x > y) {
+  x = x + 1;
+}</textarea>
+
+      <div class="botones">
+        <button onclick="analizar()">Analizar código</button>
+        <button class="secundario" onclick="limpiar()">Limpiar</button>
+        <button class="secundario" onclick="cargarEjemplo()">Cargar ejemplo</button>
+      </div>
+    </section>
+
+    <section class="resumen">
+      <div>
+        <h3>Líneas analizadas</h3>
+        <p id="lineas">0</p>
+      </div>
+      <div>
+        <h3>Tokens generados</h3>
+        <p id="totalTokens">0</p>
+      </div>
+      <div>
+        <h3>Identificadores</h3>
+        <p id="totalIds">0</p>
+      </div>
+      <div>
+        <h3>Errores</h3>
+        <p id="totalErrores">0</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Listado de tokens</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Lexema</th>
+              <th>Categoría léxica</th>
+              <th>Línea</th>
+            </tr>
+          </thead>
+          <tbody id="tablaTokens"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Tabla de símbolos</h2>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr>
+              <th>Identificador</th>
+              <th>Tipo</th>
+              <th>Primer uso en línea</th>
+            </tr>
+          </thead>
+          <tbody id="tablaSimbolos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Control de errores</h2>
+      <div id="errores" class="errores"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Árbol sintáctico generado</h2>
+      <pre id="arbol"></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto educativo: simulación de análisis léxico y sintáctico.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
