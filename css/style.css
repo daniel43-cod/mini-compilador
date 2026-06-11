@@ -1,0 +1,196 @@
+/* ── Reset ─────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Base ───────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --danger:    #f47878;
+  --success:   #5ed3a8;
+  --warning:   #f0c060;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ── Layout ─────────────────────────── */
+body > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Headings ───────────────────────── */
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+  padding: 2rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+h1::before {
+  content: "◈";
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Textarea ───────────────────────── */
+#codigo {
+  width: 100%;
+  min-height: 200px;
+  background: var(--bg2);
+  color: var(--text);
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  resize: vertical;
+  transition: border-color 0.2s;
+  outline: none;
+}
+#codigo:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124,106,247,0.15);
+}
+#codigo::placeholder { color: var(--muted); }
+
+/* ── Button ─────────────────────────── */
+#btnAnalizar {
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.18s, transform 0.1s;
+}
+#btnAnalizar:hover  { background: #6a58e8; }
+#btnAnalizar:active { transform: scale(0.97); }
+
+/* ── Info panel ─────────────────────── */
+#info {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.8;
+}
+#info:empty { display: none; }
+
+/* ── Tables ─────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+thead tr {
+  background: var(--bg3);
+}
+thead th {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(124,106,247,0.07); }
+
+tbody td {
+  padding: 0.55rem 1rem;
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  color: var(--text);
+  vertical-align: middle;
+}
+tbody td:first-child { color: var(--accent2); }
+tbody td:nth-child(2) { color: var(--warning); }
+tbody td:nth-child(3) { color: var(--muted); font-size: 12px; }
+
+/* ── Errores ────────────────────────── */
+#errores {
+  background: rgba(244,120,120,0.08);
+  border: 1px solid rgba(244,120,120,0.25);
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--danger);
+  line-height: 1.8;
+}
+#errores:empty { display: none; }
+
+/* ── Árbol sintáctico ───────────────── */
+#arbol {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.9;
+  color: var(--accent2);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ── Scrollbar ──────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
