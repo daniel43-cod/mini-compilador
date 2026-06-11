@@ -14,7 +14,7 @@ class Lexer {
             "function", "return", "true", "false"
         ];
 
-        const regex = /([a-zA-Z_][a-zA-Z0-9_]*|\d+|==|!=|<=|>=|\+\+|--|[+\-*\/=<>;,.(){}[\]])/g;
+        const regex = /(".*?"|'.*?'|[a-zA-Z_][a-zA-Z0-9_]*|\d+|==|!=|<=|>=|\+\+|--|[+\-*\/=<>;,.(){}[\]])/g;
 
         lineas.forEach((lineaTexto, index) => {
             const linea = index + 1;
@@ -43,6 +43,7 @@ class Lexer {
     }
 
     identificarTipo(lexema, palabrasReservadas) {
+         if (/^".*"$/.test(lexema) || /^'.*'$/.test(lexema))return "LITERAL_CADENA";
         if (palabrasReservadas.includes(lexema)) return "PALABRA_RESERVADA";
         if (/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(lexema)) return "IDENTIFICADOR";
         if (/^\d+$/.test(lexema)) return "NUMERO";
