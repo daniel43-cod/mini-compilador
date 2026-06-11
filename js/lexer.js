@@ -14,7 +14,7 @@ class Lexer {
             "function", "return", "true", "false"
         ];
 
-        const regex = /(".*?"|'.*?'|[a-zA-Z_][a-zA-Z0-9_]*|\d+|==|!=|<=|>=|\+\+|--|[+\-*\/=<>;,.(){}[\]])/g;
+       const regex = /(".*?"|'.*?'|\d+\.\d+|\d+|\+=|-=|\*=|\/=|==|!=|<=|>=|\+\+|--|[a-zA-Z_áéíóúÁÉÍÓÚñÑ][a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]*|[+\-*\/=<>;,.(){}[\]])/g; 
 
         lineas.forEach((lineaTexto, index) => {
             const linea = index + 1;
@@ -42,16 +42,37 @@ class Lexer {
         };
     }
 
-    identificarTipo(lexema, palabrasReservadas) {
-         if (/^".*"$/.test(lexema) || /^'.*'$/.test(lexema))return "LITERAL_CADENA";
-        if (palabrasReservadas.includes(lexema)) return "PALABRA_RESERVADA";
-        if (/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(lexema)) return "IDENTIFICADOR";
-        if (/^\d+$/.test(lexema)) return "NUMERO";
-        if (/^(==|!=|<=|>=|=|<|>)$/.test(lexema)) return "OPERADOR_RELACIONAL/ASIGNACION";
-        if (/^(\+|\-|\*|\/|\+\+|--)$/.test(lexema)) return "OPERADOR_ARITMETICO";
-        if (/^[;,.(){}[\]]$/.test(lexema)) return "SIMBOLO_ESPECIAL";
-        return "DESCONOCIDO";
-    }
+   identificarTipo(lexema, palabrasReservadas) {
+    if (/^(true|false)$/.test(lexema))
+    return "LITERAL_BOOLEANO";
+    if (palabrasReservadas.includes(lexema)) return "PALABRA_RESERVADA";
+
+    if (/^".*"$/.test(lexema) || /^'.*'$/.test(lexema))
+        return "LITERAL_CADENA";
+
+    if (/^(true|false)$/.test(lexema))
+        return "LITERAL_BOOLEANO";
+
+    if (/^\d+\.\d+$/.test(lexema))
+        return "LITERAL_DECIMAL";
+
+    if (/^\d+$/.test(lexema))
+        return "LITERAL_NUMERICO";
+
+    if (/^[a-zA-Z_áéíóúÁÉÍÓÚñÑ][a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]*$/.test(lexema))
+        return "IDENTIFICADOR";
+ 
+    if (/^(==|!=|<=|>=|=|<|>|\+=|-=|\*=|\/=)$/.test(lexema))
+      return "OPERADOR_RELACIONAL/ASIGNACION";
+
+    if (/^(\+|\-|\*|\/|\+\+|--)$/.test(lexema))
+        return "OPERADOR_ARITMETICO";
+
+    if (/^[;,.(){}[\]]$/.test(lexema))
+        return "SIMBOLO_ESPECIAL";
+
+    return "DESCONOCIDO";
+}
 
     agregarSimbolo(nombre, linea) {
         const existe = this.simbolos.find(s => s.nombre === nombre);
