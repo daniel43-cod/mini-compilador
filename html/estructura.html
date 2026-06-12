@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estructura.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>3. Expresiones Regulares por Categoría Léxica</h2>
+
+<p>
+    Las expresiones regulares permiten definir los patrones que utiliza el analizador léxico
+    para reconocer cada tipo de token dentro del código fuente escrito en JavaScript.
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Categoría Léxica</th>
+            <th>Expresión Regular</th>
+            <th>Ejemplo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Palabra Reservada</td>
+            <td><code>\b(let|var|const|if|else|for|while|function|return|true|false)\b</code></td>
+            <td><code>let</code>, <code>if</code>, <code>while</code></td>
+        </tr>
+
+        <tr>
+            <td>Identificador</td>
+            <td><code>[a-zA-Z_áéíóúÁÉÍÓÚñÑ][a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]*</code></td>
+            <td><code>edad</code>, <code>temperatura</code>, <code>contador1</code></td>
+        </tr>
+
+        <tr>
+            <td>Literal Numérico Entero</td>
+            <td><code>\d+</code></td>
+            <td><code>10</code>, <code>25</code>, <code>100</code></td>
+        </tr>
+
+        <tr>
+            <td>Literal Numérico Decimal</td>
+            <td><code>\d+\.\d+</code></td>
+            <td><code>36.5</code>, <code>10.75</code></td>
+        </tr>
+
+        <tr>
+            <td>Literal de Cadena</td>
+            <td><code>".*?"|'.*?'</code></td>
+            <td><code>"Hola"</code>, <code>'JavaScript'</code></td>
+        </tr>
+
+        <tr>
+            <td>Literal Booleano</td>
+            <td><code>true|false</code></td>
+            <td><code>true</code>, <code>false</code></td>
+        </tr>
+
+        <tr>
+            <td>Operador Aritmético</td>
+            <td><code>\+|\-|\*|\/|\+\+|--</code></td>
+            <td><code>+</code>, <code>-</code>, <code>++</code></td>
+        </tr>
+
+        <tr>
+            <td>Operador Relacional</td>
+            <td><code>==|!=|&lt;=|&gt;=|&lt;|&gt;</code></td>
+            <td><code>==</code>, <code>&gt;=</code>, <code>&lt;</code></td>
+        </tr>
+
+        <tr>
+            <td>Operador de Asignación</td>
+            <td><code>=|\+=|-=|\*=|\/=</code></td>
+            <td><code>=</code>, <code>+=</code>, <code>-=</code></td>
+        </tr>
+
+        <tr>
+            <td>Delimitadores</td>
+            <td><code>;|,|\.</code></td>
+            <td><code>;</code>, <code>,</code>, <code>.</code></td>
+        </tr>
+
+        <tr>
+            <td>Agrupadores</td>
+            <td><code>\(|\)|\{|\}|\[|\]</code></td>
+            <td><code>( )</code>, <code>{ }</code>, <code>[ ]</code></td>
+        </tr>
+
+        <tr>
+            <td>Comentario de Línea</td>
+            <td><code>//.*</code></td>
+            <td><code>// Esto es un comentario</code></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Expresión Regular Principal del Analizador Léxico</h3>
+
+<p>
+    En la implementación del programa se utiliza una expresión regular principal para separar
+    el código fuente en diferentes lexemas antes de clasificarlos como tokens.
+</p>
+
+<pre><code>(".*?"|'.*?'|\d+\.\d+|\d+|\+=|-=|\*=|\/=|==|!=|&lt;=|&gt;=|\+\+|--|[a-zA-Z_áéíóúÁÉÍÓÚñÑ][a-zA-Z0-9_áéíóúÁÉÍÓÚñÑ]*|[+\-*\/=&lt;&gt;;,.(){}[\]])</code></pre>
+</body>
+</html>

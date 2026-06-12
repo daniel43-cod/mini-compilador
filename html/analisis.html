@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/analisis.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>6. Análisis Léxico con Código de Ejemplo</h2>
+
+<p>
+    Para comprobar el funcionamiento del analizador léxico, se utiliza el siguiente
+    bloque de código escrito en JavaScript.
+</p>
+
+<h3>Código de ejemplo</h3>
+
+<pre><code>const edadPersona = 20;
+
+if (edadPersona &gt;= 18) {
+    console.log("Acceso concedido. Puede ingresar.");
+} else {
+    console.log("Acceso denegado. Es menor de edad.");
+}</code></pre>
+
+<h3>Tokens generados</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Lexema</th>
+            <th>Categoría Léxica</th>
+            <th>Línea</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>const</code></td>
+            <td>PALABRA_RESERVADA</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>edadPersona</code></td>
+            <td>IDENTIFICADOR</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>=</code></td>
+            <td>OPERADOR_ASIGNACION</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>20</code></td>
+            <td>LITERAL_NUMERICO</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>;</code></td>
+            <td>SIMBOLO_ESPECIAL</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>if</code></td>
+            <td>PALABRA_RESERVADA</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>(</code></td>
+            <td>SIMBOLO_ESPECIAL</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>edadPersona</code></td>
+            <td>IDENTIFICADOR</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>&gt;=</code></td>
+            <td>OPERADOR_RELACIONAL</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>18</code></td>
+            <td>LITERAL_NUMERICO</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>)</code></td>
+            <td>SIMBOLO_ESPECIAL</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>{</code></td>
+            <td>SIMBOLO_ESPECIAL</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>console</code></td>
+            <td>IDENTIFICADOR</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><code>.</code></td>
+            <td>SIMBOLO_ESPECIAL</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><code>log</code></td>
+            <td>IDENTIFICADOR</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><code>"Acceso concedido. Puede ingresar."</code></td>
+            <td>LITERAL_CADENA</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><code>else</code></td>
+            <td>PALABRA_RESERVADA</td>
+            <td>5</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Resultado del análisis</h3>
+
+<p>
+    El analizador léxico identifica correctamente palabras reservadas,
+    identificadores, operadores, literales numéricos, literales de cadena y símbolos
+    especiales. Además, cada token generado incluye el lexema encontrado, su categoría
+    léxica y el número de línea donde aparece.
+</p>
+</body>
+</html>

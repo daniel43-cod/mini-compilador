@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/afd.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>10. Diagramas de Conway</h2>
+
+<p>
+    Los diagramas de Conway representan gráficamente las estructuras sintácticas
+    reconocidas por el analizador sintáctico implementado.
+</p>
+
+<h3>Declaración de variable</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["let | var | const"]
+    B --> C["IDENTIFICADOR"]
+    C --> D["="]
+    D --> E["VALOR"]
+    E --> F[";"]
+    F --> G([Fin])
+</pre>
+
+<h3>Asignación</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["IDENTIFICADOR"]
+    B --> C["= | += | -= | *= | /="]
+    C --> D["VALOR"]
+    D --> E[";"]
+    E --> F([Fin])
+</pre>
+
+<h3>Impresión con console.log</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["console"]
+    B --> C["."]
+    C --> D["log"]
+    D --> E["("]
+    E --> F["VALOR"]
+    F --> G[")"]
+    G --> H[";"]
+    H --> I([Fin])
+</pre>
+
+<h3>Condicional IF</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["if"]
+    B --> C["("]
+    C --> D["CONDICIÓN"]
+    D --> E[")"]
+    E --> F["{"]
+    F --> G["SENTENCIAS"]
+    G --> H["}"]
+    H --> I([Fin])
+</pre>
+
+<h3>Condicional ELSE</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["else"]
+    B --> C["{"]
+    C --> D["SENTENCIAS"]
+    D --> E["}"]
+    E --> F([Fin])
+</pre>
+
+<h3>Bucle FOR</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["for"]
+    B --> C["("]
+    C --> D["Inicialización"]
+    D --> E[";"]
+    E --> F["Condición"]
+    F --> G[";"]
+    G --> H["Incremento"]
+    H --> I[")"]
+    I --> J["{"]
+    J --> K["SENTENCIAS"]
+    K --> L["}"]
+    L --> M([Fin])
+</pre>
+
+<h3>Bucle WHILE</h3>
+
+<pre class="mermaid">
+flowchart LR
+    A([Inicio]) --> B["while"]
+    B --> C["("]
+    C --> D["CONDICIÓN"]
+    D --> E[")"]
+    E --> F["{"]
+    F --> G["SENTENCIAS"]
+    G --> H["}"]
+    H --> I([Fin])
+</pre>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+</body>
+</html>

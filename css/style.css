@@ -1,7 +1,7 @@
-/* ── Reset ─────────────────────────── */
+/* ── Reset ─────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Base ───────────────────────────── */
+/* ── Variables ──────────────────────────────────── */
 :root {
   --bg:        #0f1117;
   --bg2:       #181c27;
@@ -18,6 +18,7 @@
   --radius-lg: 14px;
 }
 
+/* ── Base ───────────────────────────────────────── */
 body {
   background: var(--bg);
   color: var(--text);
@@ -25,10 +26,9 @@ body {
   font-size: 15px;
   line-height: 1.65;
   min-height: 100vh;
-  padding: 2rem 1rem 4rem;
+  padding: 0 1rem 4rem;
 }
 
-/* ── Layout ─────────────────────────── */
 body > * {
   max-width: 860px;
   margin-left: auto;
@@ -36,7 +36,43 @@ body > * {
   display: block;
 }
 
-/* ── Headings ───────────────────────── */
+/* ── Navegación ─────────────────────────────────── */
+nav {
+  max-width: 860px;
+  margin: 1.5rem auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+nav a { text-decoration: none; }
+
+nav a > button {
+  background: var(--bg2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.85rem;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+nav a > button:hover {
+  background: var(--bg3);
+  color: var(--text);
+  border-color: rgba(124,106,247,0.4);
+}
+
+nav a > button:active { transform: scale(0.97); }
+
+/* ── Headings ───────────────────────────────────── */
 h1 {
   font-size: 1.6rem;
   font-weight: 600;
@@ -64,7 +100,7 @@ h2 {
   border-bottom: 1px solid var(--border);
 }
 
-/* ── Textarea ───────────────────────── */
+/* ── Textarea ───────────────────────────────────── */
 #codigo {
   width: 100%;
   min-height: 200px;
@@ -86,7 +122,7 @@ h2 {
 }
 #codigo::placeholder { color: var(--muted); }
 
-/* ── Button ─────────────────────────── */
+/* ── Botón analizar ─────────────────────────────── */
 #btnAnalizar {
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
@@ -103,7 +139,7 @@ h2 {
 #btnAnalizar:hover  { background: #6a58e8; }
 #btnAnalizar:active { transform: scale(0.97); }
 
-/* ── Info panel ─────────────────────── */
+/* ── Info panel ─────────────────────────────────── */
 #info {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -116,7 +152,7 @@ h2 {
 }
 #info:empty { display: none; }
 
-/* ── Tables ─────────────────────────── */
+/* ── Tablas ─────────────────────────────────────── */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -127,9 +163,8 @@ table {
   overflow: hidden;
 }
 
-thead tr {
-  background: var(--bg3);
-}
+thead tr { background: var(--bg3); }
+
 thead th {
   padding: 0.7rem 1rem;
   text-align: left;
@@ -154,11 +189,11 @@ tbody td {
   color: var(--text);
   vertical-align: middle;
 }
-tbody td:first-child { color: var(--accent2); }
+tbody td:first-child  { color: var(--accent2); }
 tbody td:nth-child(2) { color: var(--warning); }
 tbody td:nth-child(3) { color: var(--muted); font-size: 12px; }
 
-/* ── Errores ────────────────────────── */
+/* ── Errores ────────────────────────────────────── */
 #errores {
   background: rgba(244,120,120,0.08);
   border: 1px solid rgba(244,120,120,0.25);
@@ -172,7 +207,7 @@ tbody td:nth-child(3) { color: var(--muted); font-size: 12px; }
 }
 #errores:empty { display: none; }
 
-/* ── Árbol sintáctico ───────────────── */
+/* ── Árbol sintáctico ───────────────────────────── */
 #arbol {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -183,14 +218,11 @@ tbody td:nth-child(3) { color: var(--muted); font-size: 12px; }
   line-height: 1.9;
   color: var(--accent2);
   overflow-x: auto;
-  white-space: pre;
 }
+#arbol:empty { display: none; }
 
-/* ── Scrollbar ──────────────────────── */
+/* ── Scrollbar ──────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
-  border-radius: 99px;
-}
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/gramatica.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>9. Notación BNF del Lenguaje Analizado</h2>
+
+<p>
+    La notación BNF permite representar formalmente la gramática del subconjunto
+    de JavaScript que reconoce el analizador sintáctico desarrollado.
+</p>
+
+<pre><code>
+&lt;programa&gt; ::= &lt;sentencia&gt; &lt;programa&gt; | ε
+
+&lt;sentencia&gt; ::= &lt;declaracion&gt;
+              | &lt;asignacion&gt;
+              | &lt;impresion&gt;
+              | &lt;condicional&gt;
+              | &lt;bucle_for&gt;
+              | &lt;bucle_while&gt;
+
+&lt;declaracion&gt; ::= &lt;tipo_variable&gt; IDENTIFICADOR "=" &lt;valor&gt; ";"
+
+&lt;tipo_variable&gt; ::= "let" | "var" | "const"
+
+&lt;asignacion&gt; ::= IDENTIFICADOR &lt;operador_asignacion&gt; &lt;valor&gt; ";"
+
+&lt;operador_asignacion&gt; ::= "=" | "+=" | "-=" | "*=" | "/="
+
+&lt;impresion&gt; ::= "console" "." "log" "(" &lt;lista_valores&gt; ")" ";"
+
+&lt;lista_valores&gt; ::= &lt;valor&gt; &lt;mas_valores&gt;
+
+&lt;mas_valores&gt; ::= "," &lt;valor&gt; &lt;mas_valores&gt; | ε
+
+&lt;condicional&gt; ::= "if" "(" &lt;condicion&gt; ")" "{" &lt;programa&gt; "}" &lt;opcional_else&gt;
+
+&lt;opcional_else&gt; ::= "else" "{" &lt;programa&gt; "}"
+                   | "else" &lt;condicional&gt;
+                   | ε
+
+&lt;bucle_for&gt; ::= "for" "(" IDENTIFICADOR "=" &lt;valor&gt; ";" &lt;condicion&gt; ";" IDENTIFICADOR "++" ")" "{" &lt;programa&gt; "}"
+
+&lt;bucle_while&gt; ::= "while" "(" &lt;condicion&gt; ")" "{" &lt;programa&gt; "}"
+
+&lt;condicion&gt; ::= IDENTIFICADOR &lt;operador_relacional&gt; &lt;valor&gt;
+
+&lt;operador_relacional&gt; ::= "==" | "!=" | "&lt;" | "&gt;" | "&lt;=" | "&gt;="
+
+&lt;valor&gt; ::= IDENTIFICADOR
+           | LITERAL_NUMERICO
+           | LITERAL_DECIMAL
+           | LITERAL_CADENA
+           | LITERAL_BOOLEANO
+</code></pre>
+</body>
+</html>

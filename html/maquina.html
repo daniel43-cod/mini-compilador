@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/afd.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <title>Document</title>
+</head>
+<script>
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+<body>
+    <h2>5. Máquina Discriminadora Determinista</h2>
+
+<p>
+    La máquina discriminadora determinista permite clasificar cada lexema
+    encontrado por el analizador léxico y determinar a qué categoría pertenece.
+</p>
+
+<pre class="mermaid">
+flowchart TD
+
+    A([Inicio: Lexema leído])
+
+    A --> B{¿Es palabra reservada?}
+    B -->|Sí| C[PALABRA_RESERVADA]
+    B -->|No| D{¿Es literal booleano?}
+
+    D -->|Sí| E[LITERAL_BOOLEANO]
+    D -->|No| F{¿Es literal cadena?}
+
+    F -->|Sí| G[LITERAL_CADENA]
+    F -->|No| H{¿Es número decimal?}
+
+    H -->|Sí| I[LITERAL_DECIMAL]
+    H -->|No| J{¿Es número entero?}
+
+    J -->|Sí| K[LITERAL_NUMERICO]
+    J -->|No| L{¿Es identificador?}
+
+    L -->|Sí| M[IDENTIFICADOR]
+    L -->|No| N{¿Es operador relacional o asignación?}
+
+    N -->|Sí| O[OPERADOR_RELACIONAL_ASIGNACION]
+    N -->|No| P{¿Es operador aritmético?}
+
+    P -->|Sí| Q[OPERADOR_ARITMETICO]
+    P -->|No| R{¿Es símbolo especial?}
+
+    R -->|Sí| S[SIMBOLO_ESPECIAL]
+    R -->|No| T[ERROR_LEXICO]
+
+</pre>
+</body>
+</html>

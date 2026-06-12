@@ -72,5 +72,41 @@ function mostrarErrores(errores) {
 }
 
 function mostrarArbol(arbol) {
-    document.getElementById("arbol").textContent = JSON.stringify(arbol, null, 4);
+    const contenedor = document.getElementById("arbol");
+
+    let codigoMermaid = "graph TD\n";
+    let contador = 0;
+
+    function crearNodo(texto) {
+        const id = "N" + contador++;
+        codigoMermaid += `${id}["${String(texto).replace(/"/g, '\\"')}"]\n`;
+        return id;
+    }
+
+    function recorrer(nodo, padreId = null) {
+        const actualId = crearNodo(nodo.tipo || nodo);
+
+        if (padreId) {
+            codigoMermaid += `${padreId} --> ${actualId}\n`;
+        }
+
+        if (nodo.hijos) {
+            nodo.hijos.forEach(hijo => {
+                if (typeof hijo === "object") {
+                    recorrer(hijo, actualId);
+                } else {
+                    const hijoId = crearNodo(hijo);
+                    codigoMermaid += `${actualId} --> ${hijoId}\n`;
+                }
+            });
+        }
+    }
+
+    arbol.forEach(nodo => recorrer(nodo));
+
+    contenedor.removeAttribute("data-processed");
+    contenedor.innerHTML = codigoMermaid;
+
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.init(undefined, contenedor);
 }

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../css/ll1.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>12. Análisis Sintáctico LL(1)</h2>
+
+<p>
+    Se realiza el análisis sintáctico LL(1) para la siguiente sentencia:
+</p>
+
+<pre><code>
+let edad = 20;
+</code></pre>
+
+<h3>Tokens de Entrada</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Token</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>let</td></tr>
+        <tr><td>IDENTIFICADOR</td></tr>
+        <tr><td>=</td></tr>
+        <tr><td>LITERAL_NUMERICO</td></tr>
+        <tr><td>;</td></tr>
+        <tr><td>$</td></tr>
+    </tbody>
+</table>
+
+<h3>Pila Inicial</h3>
+
+<pre>
+PROGRAMA $
+</pre>
+
+<h3>Proceso de Análisis LL(1)</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Paso</th>
+            <th>Pila</th>
+            <th>Entrada</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>1</td>
+            <td>&lt;programa&gt; $</td>
+            <td>let IDENTIFICADOR = LITERAL_NUMERICO ; $</td>
+            <td>Aplicar &lt;programa&gt; → &lt;sentencia&gt;</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>&lt;sentencia&gt; $</td>
+            <td>let IDENTIFICADOR = LITERAL_NUMERICO ; $</td>
+            <td>Aplicar &lt;sentencia&gt; → &lt;declaracion&gt;</td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td>&lt;declaracion&gt; $</td>
+            <td>let IDENTIFICADOR = LITERAL_NUMERICO ; $</td>
+            <td>Aplicar producción de declaración</td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td>let IDENTIFICADOR = VALOR ; $</td>
+            <td>let IDENTIFICADOR = LITERAL_NUMERICO ; $</td>
+            <td>Consumir token "let"</td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td>IDENTIFICADOR = VALOR ; $</td>
+            <td>IDENTIFICADOR = LITERAL_NUMERICO ; $</td>
+            <td>Consumir IDENTIFICADOR</td>
+        </tr>
+
+        <tr>
+            <td>6</td>
+            <td>= VALOR ; $</td>
+            <td>= LITERAL_NUMERICO ; $</td>
+            <td>Consumir "="</td>
+        </tr>
+
+        <tr>
+            <td>7</td>
+            <td>VALOR ; $</td>
+            <td>LITERAL_NUMERICO ; $</td>
+            <td>Aplicar VALOR → LITERAL_NUMERICO</td>
+        </tr>
+
+        <tr>
+            <td>8</td>
+            <td>LITERAL_NUMERICO ; $</td>
+            <td>LITERAL_NUMERICO ; $</td>
+            <td>Consumir número</td>
+        </tr>
+
+        <tr>
+            <td>9</td>
+            <td>; $</td>
+            <td>; $</td>
+            <td>Consumir ";"</td>
+        </tr>
+
+        <tr>
+            <td>10</td>
+            <td>$</td>
+            <td>$</td>
+            <td>Aceptar cadena</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<h3>Resultado</h3>
+
+<p>
+    La cadena es aceptada por el analizador sintáctico LL(1), ya que todos los
+    símbolos de entrada coinciden correctamente con las producciones de la gramática
+    y la pila finaliza vacía junto con el símbolo de fin de cadena ($).
+</p>
+</body>
+</html>

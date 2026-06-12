@@ -1,0 +1,201 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ──────────────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --pink:      #f472b6;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Headings ───────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 2.5rem 0 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Ícono de árbol generado */
+h3::before {
+  content: '⬡';
+  font-size: 14px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+/* ── Párrafos ───────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.75;
+  margin-bottom: 0.65rem;
+}
+
+p:first-of-type {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* "Ejemplo:" label */
+p:not(:first-of-type) {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(124,106,247,0.5);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Bloque de código ejemplo ───────────────────── */
+pre:not(.mermaid) {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1.1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+pre:not(.mermaid) code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--warning);
+  background: transparent;
+  padding: 0;
+  white-space: pre;
+}
+
+/* ── Diagrama Mermaid ───────────────────────────── */
+pre.mermaid {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1rem 1.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Contador de árbol */
+pre.mermaid { counter-increment: tree-count; }
+body { counter-reset: tree-count; }
+
+pre.mermaid::before {
+  content: 'árbol #' counter(tree-count);
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(124,106,247,0.35);
+  pointer-events: none;
+}
+
+/* Línea decorativa superior */
+pre.mermaid::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none;
+}
+
+/* ── Overrides Mermaid tema oscuro ──────────────── */
+.mermaid svg { max-width: 100%; height: auto; }
+
+/* Nodo raíz (primer nodo = nodo A) */
+.mermaid .node:first-of-type rect,
+.mermaid .node:first-of-type circle {
+  fill: rgba(124,106,247,0.2) !important;
+  stroke: var(--accent) !important;
+  stroke-width: 2px !important;
+}
+
+/* Resto de nodos */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node polygon,
+.mermaid .node ellipse {
+  fill: var(--bg3) !important;
+  stroke: rgba(255,255,255,0.12) !important;
+  stroke-width: 1px !important;
+}
+
+.mermaid .node .label,
+.mermaid .nodeLabel,
+.mermaid text {
+  fill: var(--text) !important;
+  color: var(--text) !important;
+  font-family: 'Consolas', 'JetBrains Mono', monospace !important;
+  font-size: 12px !important;
+}
+
+.mermaid .edgePath .path {
+  stroke: rgba(78,201,176,0.4) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid .edgeLabel {
+  background: var(--bg) !important;
+  color: var(--muted) !important;
+  font-size: 11px !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

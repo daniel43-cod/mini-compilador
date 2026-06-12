@@ -1,0 +1,288 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ──────────────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  /* badges por categoría */
+  --badge-keyword-bg:   rgba(192,132,252,0.15);
+  --badge-keyword-fg:   #c084fc;
+  --badge-ident-bg:     rgba(78,201,176,0.15);
+  --badge-ident-fg:     #4ec9b0;
+  --badge-op-bg:        rgba(125,211,252,0.15);
+  --badge-op-fg:        #7dd3fc;
+  --badge-number-bg:    rgba(240,192,96,0.15);
+  --badge-number-fg:    #f0c060;
+  --badge-string-bg:    rgba(249,162,108,0.15);
+  --badge-string-fg:    #f9a26c;
+  --badge-symbol-bg:    rgba(163,230,53,0.15);
+  --badge-symbol-fg:    #a3e635;
+  --badge-error-bg:     rgba(244,120,120,0.15);
+  --badge-error-fg:     #f47878;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Headings ───────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 2rem 0 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+h3::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ── Párrafos ───────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+p:first-of-type {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+}
+
+/* ── Bloque de código fuente ────────────────────── */
+pre {
+  position: relative;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  counter-reset: line-num;
+}
+
+/* Etiqueta de lenguaje */
+pre::before {
+  content: 'JavaScript';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(240,192,96,0.5);
+}
+
+/* Línea de números simulada con gradient */
+pre::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 2.8rem;
+  background: rgba(255,255,255,0.02);
+  border-right: 1px solid var(--border);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  pointer-events: none;
+}
+
+pre code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text);
+  background: transparent;
+  padding: 0;
+  white-space: pre;
+  display: block;
+}
+
+/* ── <code> inline ──────────────────────────────── */
+code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: rgba(124,106,247,0.12);
+  color: var(--accent2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ── Tabla de tokens ────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 5px;
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+}
+
+thead th {
+  padding: 0.4rem 1rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+tbody tr {
+  background: var(--bg2);
+  transition: transform 0.15s, background 0.15s;
+}
+tbody tr:hover {
+  background: var(--bg3);
+  transform: translateX(4px);
+}
+
+tbody td {
+  padding: 0.55rem 1rem;
+  vertical-align: middle;
+}
+
+tbody td:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  color: var(--accent2);
+}
+tbody td:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+  width: 60px;
+}
+
+/* Columna categoría: badges */
+tbody td:nth-child(2) {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Badge base */
+tbody td:nth-child(2) {
+  padding: 0.55rem 1rem;
+}
+
+/* Colorear por texto de la categoría */
+tbody tr:has(td:nth-child(2):not([class])) td:nth-child(2) {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+}
+
+/* Aplicar color badge según contenido */
+tbody td:nth-child(2) {
+  position: relative;
+}
+
+/* Pseudo-badges via atributos — se aplican con JS inline o con nth */
+/* PALABRA_RESERVADA */
+tbody tr:nth-child(1)  td:nth-child(2),
+tbody tr:nth-child(6)  td:nth-child(2),
+tbody tr:nth-child(17) td:nth-child(2) {
+  color: var(--badge-keyword-fg);
+  background: var(--badge-keyword-bg);
+  border-radius: 6px;
+}
+/* IDENTIFICADOR */
+tbody tr:nth-child(2)  td:nth-child(2),
+tbody tr:nth-child(8)  td:nth-child(2),
+tbody tr:nth-child(13) td:nth-child(2),
+tbody tr:nth-child(15) td:nth-child(2) {
+  color: var(--badge-ident-fg);
+  background: var(--badge-ident-bg);
+  border-radius: 6px;
+}
+/* OPERADOR */
+tbody tr:nth-child(3)  td:nth-child(2),
+tbody tr:nth-child(9)  td:nth-child(2) {
+  color: var(--badge-op-fg);
+  background: var(--badge-op-bg);
+  border-radius: 6px;
+}
+/* LITERAL_NUMERICO */
+tbody tr:nth-child(4)  td:nth-child(2),
+tbody tr:nth-child(10) td:nth-child(2) {
+  color: var(--badge-number-fg);
+  background: var(--badge-number-bg);
+  border-radius: 6px;
+}
+/* LITERAL_CADENA */
+tbody tr:nth-child(16) td:nth-child(2) {
+  color: var(--badge-string-fg);
+  background: var(--badge-string-bg);
+  border-radius: 6px;
+}
+/* SIMBOLO_ESPECIAL */
+tbody tr:nth-child(5)  td:nth-child(2),
+tbody tr:nth-child(7)  td:nth-child(2),
+tbody tr:nth-child(11) td:nth-child(2),
+tbody tr:nth-child(12) td:nth-child(2),
+tbody tr:nth-child(14) td:nth-child(2) {
+  color: var(--badge-symbol-fg);
+  background: var(--badge-symbol-bg);
+  border-radius: 6px;
+}
+
+/* Número de línea con píldora */
+tbody td:last-child::before {
+  content: 'L';
+  font-size: 9px;
+  color: var(--muted);
+  opacity: 0.5;
+  margin-right: 1px;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

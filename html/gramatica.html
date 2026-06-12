@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/gramatica.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>7. Gramática Incontextual (Gramática Libre de Contexto)</h2>
+
+<p>
+La siguiente gramática describe las estructuras sintácticas reconocidas
+por el analizador sintáctico desarrollado para JavaScript.
+</p>
+
+<pre>
+&lt;programa&gt; ::= &lt;sentencia&gt; &lt;programa&gt;
+              | ε
+
+&lt;sentencia&gt; ::= &lt;declaracion&gt;
+              | &lt;asignacion&gt;
+              | &lt;impresion&gt;
+              | &lt;if&gt;
+              | &lt;for&gt;
+              | &lt;while&gt;
+
+&lt;declaracion&gt; ::= let IDENTIFICADOR = &lt;valor&gt; ;
+                | var IDENTIFICADOR = &lt;valor&gt; ;
+                | const IDENTIFICADOR = &lt;valor&gt; ;
+
+&lt;asignacion&gt; ::= IDENTIFICADOR = &lt;valor&gt; ;
+
+&lt;impresion&gt; ::= console . log ( &lt;valor&gt; ) ;
+
+&lt;if&gt; ::= if ( &lt;condicion&gt; ) { &lt;programa&gt; }
+
+&lt;for&gt; ::= for ( &lt;asignacion&gt; &lt;condicion&gt; ; IDENTIFICADOR ++ ) { &lt;programa&gt; }
+
+&lt;while&gt; ::= while ( &lt;condicion&gt; ) { &lt;programa&gt; }
+
+&lt;condicion&gt; ::= IDENTIFICADOR &lt;operador_relacional&gt; &lt;valor&gt;
+
+&lt;valor&gt; ::= IDENTIFICADOR
+           | LITERAL_NUMERICO
+           | LITERAL_DECIMAL
+           | LITERAL_CADENA
+           | LITERAL_BOOLEANO
+
+&lt;operador_relacional&gt; ::= ==
+                         | !=
+                         | &lt;
+                         | &gt;
+                         | &lt;=
+                         | &gt;=
+</pre>
+</body>
+</html>

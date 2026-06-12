@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../css/arbol.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>8. Árboles de Análisis Sintáctico</h2>
+
+<p>
+    El árbol de análisis sintáctico representa la estructura jerárquica de una sentencia
+    del lenguaje. Cada nodo muestra una parte de la instrucción y sus componentes.
+</p>
+
+<h3>Árbol de Declaración de Variable</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>let edad = 20;</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Declaración]
+    A --> B[let]
+    A --> C[IDENTIFICADOR: edad]
+    A --> D[=]
+    A --> E[LITERAL_NUMERICO: 20]
+    A --> F[;]
+</pre>
+
+<h3>Árbol de Asignación</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>edad = 25;</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Asignación]
+    A --> B[IDENTIFICADOR: edad]
+    A --> C[=]
+    A --> D[LITERAL_NUMERICO: 25]
+    A --> E[;]
+</pre>
+
+<h3>Árbol de Impresión</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>console.log("Hola mundo");</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Impresión]
+    A --> B[console]
+    A --> C[.]
+    A --> D[log]
+    A --> E[(]
+    A --> F[LITERAL_CADENA: Hola mundo]
+    A --> G[)]
+    A --> H[;]
+</pre>
+
+<h3>Árbol de Condicional IF</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>if (edad &gt;= 18) {
+    console.log("Mayor de edad");
+}</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Condicional IF]
+    A --> B[if]
+    A --> C[(]
+    A --> D[Condición]
+    D --> E[IDENTIFICADOR: edad]
+    D --> F[OPERADOR_RELACIONAL: >=]
+    D --> G[LITERAL_NUMERICO: 18]
+    A --> H[)]
+    A --> I[{]
+    A --> J[Impresión]
+    J --> K[console]
+    J --> L[.]
+    J --> M[log]
+    J --> N[(]
+    J --> O[LITERAL_CADENA: Mayor de edad]
+    J --> P[)]
+    J --> Q[;]
+    A --> R[}]
+</pre>
+
+<h3>Árbol de Condicional IF - ELSE</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>if (edad &gt;= 18) {
+    console.log("Acceso concedido");
+} else {
+    console.log("Acceso denegado");
+}</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Condicional IF ELSE]
+
+    A --> B[if]
+    A --> C[(]
+    A --> D[Condición]
+    D --> E[edad]
+    D --> F[>=]
+    D --> G[18]
+    A --> H[)]
+    A --> I[Bloque IF]
+
+    I --> J[Impresión]
+    J --> K[console.log]
+    J --> L[LITERAL_CADENA: Acceso concedido]
+
+    A --> M[else]
+    A --> N[Bloque ELSE]
+
+    N --> O[Impresión]
+    O --> P[console.log]
+    O --> Q[LITERAL_CADENA: Acceso denegado]
+</pre>
+
+<h3>Árbol de Bucle FOR</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>for(i = 0; i &lt; 5; i++) {
+    console.log(i);
+}</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Bucle FOR]
+
+    A --> B[for]
+    A --> C[(]
+
+    A --> D[Inicialización]
+    D --> E[i]
+    D --> F[=]
+    D --> G[0]
+
+    A --> H[Condición]
+    H --> I[i]
+    H --> J[<]
+    H --> K[5]
+
+    A --> L[Incremento]
+    L --> M[i]
+    L --> N[++]
+
+    A --> O[)]
+    A --> P[Bloque]
+
+    P --> Q[Impresión]
+    Q --> R[console.log]
+    Q --> S[IDENTIFICADOR: i]
+</pre>
+
+<h3>Árbol de Bucle WHILE</h3>
+
+<p>Ejemplo:</p>
+
+<pre><code>while(i &lt; 10) {
+    console.log(i);
+}</code></pre>
+
+<pre class="mermaid">
+flowchart TD
+    A[Bucle WHILE]
+
+    A --> B[while]
+    A --> C[(]
+
+    A --> D[Condición]
+    D --> E[i]
+    D --> F[<]
+    D --> G[10]
+
+    A --> H[)]
+    A --> I[Bloque]
+
+    I --> J[Impresión]
+    J --> K[console.log]
+    J --> L[IDENTIFICADOR: i]
+</pre>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script>
+</body>
+</html>

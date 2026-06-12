@@ -1,0 +1,172 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables (mismo tema) ─────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Headings ───────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 2.5rem 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Número de AFD autogenerado */
+h3::before {
+  content: 'AFD';
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: rgba(124,106,247,0.15);
+  border: 1px solid rgba(124,106,247,0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ── Párrafos ───────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+/* Párrafo con <code> (expresión regular) */
+p:has(code) {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+}
+
+/* ── <code> inline ──────────────────────────────── */
+code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: rgba(78,201,176,0.12);
+  color: var(--accent2);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ── Diagrama Mermaid ───────────────────────────── */
+pre.mermaid {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Etiqueta "diagrama" en esquina */
+pre.mermaid::before {
+  content: '◈ estado';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(124,106,247,0.45);
+  pointer-events: none;
+}
+
+/* ── Tema Mermaid oscuro ────────────────────────── */
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Overrides para que Mermaid respete el tema oscuro */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: var(--bg3) !important;
+  stroke: var(--accent) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid .node .label,
+.mermaid .nodeLabel,
+.mermaid text {
+  fill: var(--text) !important;
+  color: var(--text) !important;
+  font-family: 'Consolas', 'JetBrains Mono', monospace !important;
+  font-size: 13px !important;
+}
+
+.mermaid .edgePath .path,
+.mermaid .transition {
+  stroke: var(--accent2) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid .edgeLabel,
+.mermaid .transitionLabel {
+  background: var(--bg) !important;
+  color: var(--warning) !important;
+  font-size: 11px !important;
+}
+
+/* Estado de aceptación (doble círculo) */
+.mermaid .stateGroup .inner {
+  stroke: var(--accent2) !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

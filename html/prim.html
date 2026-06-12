@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../css/primeros.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>11. Análisis mediante conjuntos PRIMERO y SIGUIENTE</h2>
+
+<p>
+    Para realizar el análisis sintáctico LL(1), se construyen los conjuntos
+    PRIMERO y SIGUIENTE de las principales producciones de la gramática.
+    Estos conjuntos permiten decidir qué regla aplicar según el token de entrada.
+</p>
+
+<h3>Gramática utilizada</h3>
+
+<pre><code>
+&lt;programa&gt; ::= &lt;sentencia&gt; &lt;programa&gt; | ε
+
+&lt;sentencia&gt; ::= &lt;declaracion&gt;
+              | &lt;asignacion&gt;
+              | &lt;impresion&gt;
+              | &lt;condicional&gt;
+              | &lt;bucle_for&gt;
+              | &lt;bucle_while&gt;
+
+&lt;declaracion&gt; ::= &lt;tipo_variable&gt; IDENTIFICADOR "=" &lt;valor&gt; ";"
+
+&lt;tipo_variable&gt; ::= "let" | "var" | "const"
+
+&lt;asignacion&gt; ::= IDENTIFICADOR &lt;operador_asignacion&gt; &lt;valor&gt; ";"
+
+&lt;impresion&gt; ::= "console" "." "log" "(" &lt;lista_valores&gt; ")" ";"
+
+&lt;condicional&gt; ::= "if" "(" &lt;condicion&gt; ")" "{" &lt;programa&gt; "}" &lt;opcional_else&gt;
+
+&lt;opcional_else&gt; ::= "else" "{" &lt;programa&gt; "}" | ε
+
+&lt;bucle_for&gt; ::= "for" "(" &lt;contenido_for&gt; ")" "{" &lt;programa&gt; "}"
+
+&lt;bucle_while&gt; ::= "while" "(" &lt;condicion&gt; ")" "{" &lt;programa&gt; "}"
+
+&lt;valor&gt; ::= IDENTIFICADOR
+           | LITERAL_NUMERICO
+           | LITERAL_DECIMAL
+           | LITERAL_CADENA
+           | LITERAL_BOOLEANO
+</code></pre>
+
+<h3>Conjuntos PRIMERO</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>No Terminal</th>
+            <th>PRIMERO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&lt;programa&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, ε }</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while }</td>
+        </tr>
+        <tr>
+            <td>&lt;declaracion&gt;</td>
+            <td>{ let, var, const }</td>
+        </tr>
+        <tr>
+            <td>&lt;tipo_variable&gt;</td>
+            <td>{ let, var, const }</td>
+        </tr>
+        <tr>
+            <td>&lt;asignacion&gt;</td>
+            <td>{ IDENTIFICADOR }</td>
+        </tr>
+        <tr>
+            <td>&lt;impresion&gt;</td>
+            <td>{ console }</td>
+        </tr>
+        <tr>
+            <td>&lt;condicional&gt;</td>
+            <td>{ if }</td>
+        </tr>
+        <tr>
+            <td>&lt;opcional_else&gt;</td>
+            <td>{ else, ε }</td>
+        </tr>
+        <tr>
+            <td>&lt;bucle_for&gt;</td>
+            <td>{ for }</td>
+        </tr>
+        <tr>
+            <td>&lt;bucle_while&gt;</td>
+            <td>{ while }</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>{ IDENTIFICADOR, LITERAL_NUMERICO, LITERAL_DECIMAL, LITERAL_CADENA, LITERAL_BOOLEANO }</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Conjuntos SIGUIENTE</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>No Terminal</th>
+            <th>SIGUIENTE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&lt;programa&gt;</td>
+            <td>{ $, } }</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;declaracion&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;asignacion&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;impresion&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;condicional&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;opcional_else&gt;</td>
+            <td>{ let, var, const, IDENTIFICADOR, console, if, for, while, }, $ }</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>{ ;, ), , }</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Tabla LL(1)</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>No Terminal</th>
+            <th>Token de Entrada</th>
+            <th>Producción Aplicada</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>let, var, const</td>
+            <td>&lt;sentencia&gt; ::= &lt;declaracion&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>IDENTIFICADOR</td>
+            <td>&lt;sentencia&gt; ::= &lt;asignacion&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>console</td>
+            <td>&lt;sentencia&gt; ::= &lt;impresion&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>if</td>
+            <td>&lt;sentencia&gt; ::= &lt;condicional&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>for</td>
+            <td>&lt;sentencia&gt; ::= &lt;bucle_for&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;sentencia&gt;</td>
+            <td>while</td>
+            <td>&lt;sentencia&gt; ::= &lt;bucle_while&gt;</td>
+        </tr>
+        <tr>
+            <td>&lt;tipo_variable&gt;</td>
+            <td>let</td>
+            <td>&lt;tipo_variable&gt; ::= let</td>
+        </tr>
+        <tr>
+            <td>&lt;tipo_variable&gt;</td>
+            <td>var</td>
+            <td>&lt;tipo_variable&gt; ::= var</td>
+        </tr>
+        <tr>
+            <td>&lt;tipo_variable&gt;</td>
+            <td>const</td>
+            <td>&lt;tipo_variable&gt; ::= const</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>IDENTIFICADOR</td>
+            <td>&lt;valor&gt; ::= IDENTIFICADOR</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>LITERAL_NUMERICO</td>
+            <td>&lt;valor&gt; ::= LITERAL_NUMERICO</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>LITERAL_DECIMAL</td>
+            <td>&lt;valor&gt; ::= LITERAL_DECIMAL</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>LITERAL_CADENA</td>
+            <td>&lt;valor&gt; ::= LITERAL_CADENA</td>
+        </tr>
+        <tr>
+            <td>&lt;valor&gt;</td>
+            <td>LITERAL_BOOLEANO</td>
+            <td>&lt;valor&gt; ::= LITERAL_BOOLEANO</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    Según la tabla LL(1), el analizador puede seleccionar la producción correcta
+    observando únicamente el primer token de entrada. Por ejemplo, si el token actual
+    es <code>if</code>, se aplica la producción de condicional; si es
+    <code>console</code>, se aplica la producción de impresión.
+</p>
+
+
+...último párrafo...
+  </p>
+
+  <script>
+    const pre = document.querySelector('pre code');
+    pre.innerHTML = pre.innerHTML
+      .replace(/(&lt;\w[\w\s_]*&gt;)/g, '<span class="bnf-nonterminal">$1</span>')
+      .replace(/\b(let|var|const|if|else|for|while|console|log|true|false)\b/g, '<span class="bnf-terminal-kw">$1</span>')
+      .replace(/\b(IDENTIFICADOR|LITERAL_NUMERICO|LITERAL_DECIMAL|LITERAL_CADENA|LITERAL_BOOLEANO)\b/g, '<span class="bnf-terminal-tok">$1</span>')
+      .replace(/(::=|[|]|ε)/g, '<span class="bnf-operator">$1</span>')
+      .replace(/([;(){}=.])/g, '<span class="bnf-symbol">$1</span>');
+  </script>
+</body>
+</html>
+</body>
+</html>

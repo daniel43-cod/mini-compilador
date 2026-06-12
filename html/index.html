@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Léxico y Sintáctico JS</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="../html/Patrones.html"><button>Patrones</button></a>
+        <a href="../html/estructura.html"><button>Estructura</button></a>
+        <a href="../html/afd.html"><button>AFD</button></a>
+        <a href="../html/maquina.html"><button>Máquina</button></a>
+        <a href="../html/analisis.html"><button>Análisis</button></a>
+        <a href="../html/gramatica.html"><button>Gramática</button></a>
+        <a href="../html/arbolsin.html"><button>Árbol Sintáctico</button></a>
+        <a href="../html/notacionbnf.html"><button>Notación BNF</button></a>
+        <a href="../html/conway.html"><button>Conway</button></a>
+        <a href="../html/prim.html"><button>Primeros y Siguientes</button></a>
+        <a href="../html/ll1.html"><button>LL(1)</button></a>
+    </nav>
+
+    <h1>Analizador Léxico y Sintáctico - JavaScript</h1>
+
+    <textarea id="codigo" placeholder="Escribe código JavaScript aquí..."></textarea>
+
+    <button id="btnAnalizar">Analizar Código</button>
+
+    <h2>Información General</h2>
+    <div id="info"></div>
+
+    <h2>Tokens Generados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Lexema</th>
+                <th>Token</th>
+                <th>Línea</th>
+            </tr>
+        </thead>
+        <tbody id="tablaTokens"></tbody>
+    </table>
+
+    <h2>Tabla de Símbolos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Identificador</th>
+                <th>Tipo</th>
+                <th>Línea</th>
+            </tr>
+        </thead>
+        <tbody id="tablaSimbolos"></tbody>
+    </table>
+
+    <h2>Errores</h2>
+    <div id="errores"></div>
+
+    <h2>Árbol Sintáctico</h2>
+    <div id="arbol"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: false });
+    </script>
+    <script src="../js/models.js"></script>
+    <script src="../js/lexer.js"></script>
+    <script src="../js/parser.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

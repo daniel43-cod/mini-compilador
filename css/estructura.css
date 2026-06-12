@@ -1,0 +1,201 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables (mismo tema) ─────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --radius:    10px;
+  --radius-lg: 14px;
+
+  /* colores por categoría */
+  --cat-keyword:    #c084fc;
+  --cat-ident:      #4ec9b0;
+  --cat-number:     #f0c060;
+  --cat-string:     #f9a26c;
+  --cat-bool:       #f47878;
+  --cat-op:         #7dd3fc;
+  --cat-delim:      #a3e635;
+  --cat-comment:    #8b8fa8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Headings ───────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Párrafos ───────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+}
+
+/* ── Tabla ──────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 6px; /* filas separadas como tarjetas */
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+}
+
+thead th {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+/* Cada fila es una "tarjeta" flotante */
+tbody tr {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  transition: transform 0.15s, background 0.15s;
+}
+tbody tr:hover {
+  background: var(--bg3);
+  transform: translateX(4px);
+}
+
+tbody td {
+  padding: 0.65rem 1rem;
+  vertical-align: middle;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* Esquinas redondeadas en primera y última celda */
+tbody td:first-child {
+  border-radius: var(--radius) 0 0 var(--radius);
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+  padding-left: 1.1rem;
+}
+tbody td:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Columna regex en mono */
+tbody td:nth-child(2) {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+/* ── Dot de color por categoría (::before en td:first-child) ── */
+tbody td:first-child::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  background: var(--muted);
+}
+
+tbody tr:nth-child(1)  td:first-child::before { background: var(--cat-keyword); box-shadow: 0 0 6px var(--cat-keyword); }
+tbody tr:nth-child(2)  td:first-child::before { background: var(--cat-ident);   box-shadow: 0 0 6px var(--cat-ident); }
+tbody tr:nth-child(3)  td:first-child::before { background: var(--cat-number);  box-shadow: 0 0 6px var(--cat-number); }
+tbody tr:nth-child(4)  td:first-child::before { background: var(--cat-number);  box-shadow: 0 0 6px var(--cat-number); }
+tbody tr:nth-child(5)  td:first-child::before { background: var(--cat-string);  box-shadow: 0 0 6px var(--cat-string); }
+tbody tr:nth-child(6)  td:first-child::before { background: var(--cat-bool);    box-shadow: 0 0 6px var(--cat-bool); }
+tbody tr:nth-child(7)  td:first-child::before { background: var(--cat-op);      box-shadow: 0 0 6px var(--cat-op); }
+tbody tr:nth-child(8)  td:first-child::before { background: var(--cat-op);      box-shadow: 0 0 6px var(--cat-op); }
+tbody tr:nth-child(9)  td:first-child::before { background: var(--cat-op);      box-shadow: 0 0 6px var(--cat-op); }
+tbody tr:nth-child(10) td:first-child::before { background: var(--cat-delim);   box-shadow: 0 0 6px var(--cat-delim); }
+tbody tr:nth-child(11) td:first-child::before { background: var(--cat-delim);   box-shadow: 0 0 6px var(--cat-delim); }
+tbody tr:nth-child(12) td:first-child::before { background: var(--cat-comment); box-shadow: 0 0 6px var(--cat-comment); }
+
+/* ── <code> inline ──────────────────────────────── */
+code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 12px;
+  background: rgba(124,106,247,0.12);
+  color: var(--accent2);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* ── Bloque <pre><code> de la regex principal ───── */
+pre {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+pre code {
+  background: transparent;
+  color: var(--accent2);
+  font-size: 12.5px;
+  padding: 0;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

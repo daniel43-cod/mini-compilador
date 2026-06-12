@@ -1,0 +1,124 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ──────────────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --pink:      #f472b6;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── Heading ────────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Párrafo ────────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+}
+
+/* ── Bloque de gramática ────────────────────────── */
+pre {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  overflow-x: auto;
+  position: relative;
+  line-height: 2;
+}
+
+/* Etiqueta BNF en esquina */
+pre::before {
+  content: 'BNF';
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: rgba(124,106,247,0.4);
+}
+
+pre {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  white-space: pre;
+  counter-reset: rule;
+}
+
+/* Cada regla separada visualmente: líneas en blanco
+   se aprovechan para el espaciado natural del <pre> */
+
+/* ── Syntax highlighting via CSS ────────────────── */
+
+/* No-terminales: <nombre> → verde agua */
+/* Terminales reservados: let/var/const/if/etc → violeta */
+/* Operadores ::= | ε → amarillo */
+/* Símbolos especiales ; ( ) { } → verde lima */
+
+/* Usamos un wrapper span si el HTML los tuviera,
+   pero como es <pre> plano, coloreamos por patrón
+   con un truco: aplicamos color base al pre y
+   dejamos que el JS de resaltado lo maneje,
+   O usamos la siguiente estrategia de capas: */
+
+/* Color base del texto plano */
+pre { color: var(--text); }
+
+/* Resaltado real vía JS (se inyecta al cargar) */
+.bnf-nonterminal  { color: var(--accent2); }          /* <programa> */
+.bnf-terminal-kw  { color: var(--accent); font-weight: 600; }  /* let if for */
+.bnf-terminal-tok { color: var(--warning); }           /* IDENTIFICADOR etc */
+.bnf-operator     { color: var(--pink); font-weight: 600; }    /* ::= | ε */
+.bnf-symbol       { color: #a3e635; }                  /* ; ( ) { } = */
+.bnf-comment      { color: var(--muted); font-style: italic; }
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
