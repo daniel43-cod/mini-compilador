@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas de Conway</title>
     <link rel="stylesheet" href="../css/afd.css">
-    <title>Document</title>
 </head>
+
 <body>
-    <h2>10. Diagramas de Conway</h2>
+
+<h2>10. Diagramas de Conway</h2>
 
 <p>
     Los diagramas de Conway representan gráficamente las estructuras sintácticas
@@ -18,11 +20,11 @@
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["let | var | const"]
-    B --> C["IDENTIFICADOR"]
-    C --> D["="]
-    D --> E["VALOR"]
-    E --> F[";"]
+    A([Inicio]) --> B[Tipo de variable]
+    B --> C[Identificador]
+    C --> D[Operador de asignación]
+    D --> E[Valor]
+    E --> F[Punto y coma]
     F --> G([Fin])
 </pre>
 
@@ -30,10 +32,10 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["IDENTIFICADOR"]
-    B --> C["= | += | -= | *= | /="]
-    C --> D["VALOR"]
-    D --> E[";"]
+    A([Inicio]) --> B[Identificador]
+    B --> C[Operador de asignación]
+    C --> D[Valor]
+    D --> E[Punto y coma]
     E --> F([Fin])
 </pre>
 
@@ -41,13 +43,13 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["console"]
-    B --> C["."]
-    C --> D["log"]
-    D --> E["("]
-    E --> F["VALOR"]
-    F --> G[")"]
-    G --> H[";"]
+    A([Inicio]) --> B[console]
+    B --> C[punto]
+    C --> D[log]
+    D --> E[Paréntesis de apertura]
+    E --> F[Lista de valores]
+    F --> G[Paréntesis de cierre]
+    G --> H[Punto y coma]
     H --> I([Fin])
 </pre>
 
@@ -55,13 +57,13 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["if"]
-    B --> C["("]
-    C --> D["CONDICIÓN"]
-    D --> E[")"]
-    E --> F["{"]
-    F --> G["SENTENCIAS"]
-    G --> H["}"]
+    A([Inicio]) --> B[if]
+    B --> C[Paréntesis de apertura]
+    C --> D[Condición]
+    D --> E[Paréntesis de cierre]
+    E --> F[Llave de apertura]
+    F --> G[Sentencias]
+    G --> H[Llave de cierre]
     H --> I([Fin])
 </pre>
 
@@ -69,10 +71,10 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["else"]
-    B --> C["{"]
-    C --> D["SENTENCIAS"]
-    D --> E["}"]
+    A([Inicio]) --> B[else]
+    B --> C[Llave de apertura]
+    C --> D[Sentencias]
+    D --> E[Llave de cierre]
     E --> F([Fin])
 </pre>
 
@@ -80,17 +82,17 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["for"]
-    B --> C["("]
-    C --> D["Inicialización"]
-    D --> E[";"]
-    E --> F["Condición"]
-    F --> G[";"]
-    G --> H["Incremento"]
-    H --> I[")"]
-    I --> J["{"]
-    J --> K["SENTENCIAS"]
-    K --> L["}"]
+    A([Inicio]) --> B[for]
+    B --> C[Paréntesis de apertura]
+    C --> D[Inicialización]
+    D --> E[Separador punto y coma]
+    E --> F[Condición]
+    F --> G[Separador punto y coma]
+    G --> H[Incremento]
+    H --> I[Paréntesis de cierre]
+    I --> J[Llave de apertura]
+    J --> K[Sentencias]
+    K --> L[Llave de cierre]
     L --> M([Fin])
 </pre>
 
@@ -98,19 +100,20 @@ flowchart LR
 
 <pre class="mermaid">
 flowchart LR
-    A([Inicio]) --> B["while"]
-    B --> C["("]
-    C --> D["CONDICIÓN"]
-    D --> E[")"]
-    E --> F["{"]
-    F --> G["SENTENCIAS"]
-    G --> H["}"]
+    A([Inicio]) --> B[while]
+    B --> C[Paréntesis de apertura]
+    C --> D[Condición]
+    D --> E[Paréntesis de cierre]
+    E --> F[Llave de apertura]
+    F --> G[Sentencias]
+    G --> H[Llave de cierre]
     H --> I([Fin])
 </pre>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <script>
-    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+   
 </script>
+
 </body>
 </html>

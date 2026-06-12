@@ -1,0 +1,228 @@
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Variables ──────────────────────────────────── */
+:root {
+  --bg:        #0f1117;
+  --bg2:       #181c27;
+  --bg3:       #1e2235;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #7c6af7;
+  --accent2:   #4ec9b0;
+  --text:      #e4e6f0;
+  --muted:     #8b8fa8;
+  --warning:   #f0c060;
+  --success:   #5ed3a8;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  padding: 2rem 1rem 4rem;
+}
+
+body > * {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* ── h1 ─────────────────────────────────────────── */
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.02em;
+  padding: 1.5rem 0 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+h1::before {
+  content: "◈";
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+/* ── h2 ─────────────────────────────────────────── */
+h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── h3 ─────────────────────────────────────────── */
+h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.5rem 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+h3::before {
+  content: '▸';
+  color: var(--accent2);
+  font-size: 12px;
+}
+
+/* ── Párrafos ───────────────────────────────────── */
+p {
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+/* Primer párrafo de cada sección como card */
+h2 + p {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+}
+
+/* Párrafo debajo de h3 */
+h3 + p {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid rgba(78,201,176,0.4);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+  font-size: 13px;
+}
+
+/* Último párrafo */
+p:last-of-type {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent2);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.1rem;
+}
+
+/* ── <b> inline ─────────────────────────────────── */
+b {
+  color: var(--accent);
+  font-weight: 600;
+  background: rgba(124,106,247,0.1);
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+/* ── Lista numerada ─────────────────────────────── */
+ol {
+  list-style: none;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+  counter-reset: step-counter;
+}
+
+ol li {
+  font-size: 13.5px;
+  color: var(--text);
+  padding: 0.6rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  counter-increment: step-counter;
+  transition: background 0.12s;
+}
+ol li:last-child { border-bottom: none; }
+ol li:hover { background: rgba(124,106,247,0.06); }
+
+ol li::before {
+  content: counter(step-counter);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(124,106,247,0.15);
+  border: 1px solid rgba(124,106,247,0.25);
+  border-radius: 50%;
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Resultados: grid de cards ──────────────────── */
+/* Los h3 + p de "Resultados Generados" como mini-cards en grid */
+h2:nth-of-type(3) ~ h3 {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+h2:nth-of-type(3) ~ h3 + p {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 0.6rem 1rem 0.85rem;
+  margin-bottom: 0;
+}
+
+/* ── Bloque de código ───────────────────────────── */
+pre {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+pre::before {
+  content: 'JavaScript';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(240,192,96,0.45);
+}
+
+pre code {
+  font-family: 'Consolas', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--warning);
+  background: transparent;
+  padding: 0;
+  display: block;
+  white-space: pre;
+}
+
+/* ── Scrollbar ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }

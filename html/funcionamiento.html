@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/funcionamiento.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Funcionamiento del Analizador Léxico y Sintáctico</h1>
+
+<h2>Descripción General</h2>
+
+<p>
+El sistema desarrollado permite realizar análisis léxico y sintáctico
+sobre fragmentos de código escritos en JavaScript.
+El usuario puede ingresar código fuente y obtener información sobre
+los tokens generados, tabla de símbolos, errores encontrados y árbol sintáctico.
+</p>
+
+<h2>Pasos para utilizar el sistema</h2>
+
+<ol>
+    <li>Ingresar un bloque de código JavaScript en el área de texto.</li>
+    <li>Presionar el botón <b>Analizar Código</b>.</li>
+    <li>El sistema ejecutará el análisis léxico.</li>
+    <li>Posteriormente se realizará el análisis sintáctico.</li>
+    <li>Los resultados serán mostrados en las diferentes secciones de la página.</li>
+</ol>
+
+<h2>Resultados Generados</h2>
+
+<h3>Información General</h3>
+
+<p>
+Muestra la cantidad de líneas procesadas y estadísticas generales del análisis.
+</p>
+
+<h3>Tabla de Tokens</h3>
+
+<p>
+Presenta cada lexema identificado junto con su categoría léxica y número de línea.
+</p>
+
+<h3>Tabla de Símbolos</h3>
+
+<p>
+Muestra los identificadores encontrados durante el análisis.
+</p>
+
+<h3>Control de Errores</h3>
+
+<p>
+Informa errores léxicos y sintácticos indicando el tipo de error y la línea donde ocurrió.
+</p>
+
+<h3>Árbol Sintáctico</h3>
+
+<p>
+Representa gráficamente la estructura sintáctica del código analizado.
+</p>
+
+<h2>Ejemplo de Uso</h2>
+
+<pre><code>
+const edadPersona = 20;
+
+if (edadPersona >= 18) {
+    console.log("Acceso concedido");
+}
+</code></pre>
+
+<p>
+Al analizar este código, el sistema identificará palabras reservadas,
+identificadores, operadores, literales y construirá el árbol sintáctico
+correspondiente a la estructura condicional.
+</p>
+</body>
+</html>
